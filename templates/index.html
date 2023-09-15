@@ -14,8 +14,13 @@
             <p><em>Written by {{ post['author'] }}</em></p>
             <p>{{ post['content'] }}</p>
             <a href="{{ url_for('update', post_id=post['id']) }}">Update</a>
+            <a href="{{ url_for('delete', post_id=post['id']) }}">Delete</a>
+            <form action="{{ url_for('like', id=post['id']) }}" method="POST">
+                <button type="submit">Like ({{ post['likes'] }})</button>
+            </form>
         </div>
     {% endfor %}
 </body>
 </html>
+
 

@@ -3,13 +3,14 @@
         "id": 1,
         "auther": "Kieran Waters",
         "title": "First post",
-        "content": "This is my first post."
+        "content": "This is my first post. Updated!",
+        "likes": 1
     },
     {
         "id": 2,
         "auther": "Kieran Waters",
         "title": "Second post",
         "content": "This is my second post.",
-        "author": "Kieran Waters"
+        "likes": 0
     }
 ]

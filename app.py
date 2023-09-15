@@ -82,6 +82,18 @@ def update(post_id):
     return render_template('update.html', post=post)
 
 
+@app.route('/like/<int:id>', methods=['POST'])
+def like(id):
+    post = fetch_post_by_id(id)
+    if post is None:
+        return "Post not found", 404
+
+    post['likes'] += 1
+    update_posts(blog_posts)
+
+    return redirect(url_for('index'))
+
+
 @app.route('/')
 def index():
     posts = load_posts()
