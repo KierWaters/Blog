@@ -9,12 +9,7 @@
         "id": 2,
         "auther": "Kieran Waters",
         "title": "Second post",
-        "content": "This is my second post."
-    },
-    {
-        "id": 3,
-        "author": "Kieran Waters",
-        "title": "Third post",
-        "content": "This is a test post to see if my new add function works."
+        "content": "This is my second post.",
+        "author": "Kieran Waters"
     }
 ]

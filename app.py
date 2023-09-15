@@ -14,6 +14,13 @@ def update_posts(posts):
         json.dump(posts, file, indent=4)
 
 
+def fetch_post_by_id(post_id):
+    for post in blog_posts:
+        if post['id'] == post_id:
+            return post
+    return None
+
+
 blog_posts = load_posts()
 
 
@@ -37,6 +44,42 @@ def add():
         return redirect(url_for('index'))
 
     return render_template('add.html')
+
+
+@app.route('/delete/<int:post_id>')
+def delete(post_id):
+    global blog_posts  # Access the global variable
+
+    # Find the blog post with the given id and remove it from the list
+    blog_posts = [post for post in blog_posts if post['id'] != post_id]
+
+    # Update the JSON file
+    update_posts(blog_posts)
+
+    return redirect(url_for('index'))
+
+
+@app.route('/update/<int:post_id>', methods=['GET', 'POST'])
+def update(post_id):
+    post = fetch_post_by_id(post_id)
+    if post is None:
+        return "Post not found", 404
+
+    if request.method == 'POST':
+        author = request.form.get('author')
+        title = request.form.get('title')
+        content = request.form.get('content')
+
+        # Update the post in the JSON file
+        post['author'] = author
+        post['title'] = title
+        post['content'] = content
+
+        update_posts(blog_posts)
+
+        return redirect(url_for('index'))
+
+    return render_template('update.html', post=post)
 
 
 @app.route('/')
